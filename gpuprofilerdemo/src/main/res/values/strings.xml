@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">GpuProfilerDemo</string>
+
+    <array name="titles">
+        <item>交换缓冲区</item>
+        <item>命令问题</item>
+        <item>同步和上传</item>
+        <item>绘制</item>
+        <item>测量/布局</item>
+        <item>动画</item>
+        <item>输入处理</item>
+        <item>其他时间/VSync 延迟</item>
+    </array>
+
+    <array name="descs">
+        <item>表示 CPU 等待 GPU 完成其工作的时间。 如果此竖条升高，则表示应用在 GPU 上执行太多工作。</item>
+        <item>表示 Android 的 2D 渲染器向 OpenGL 发起绘制和重新绘制显示列表的命令所花的时间。 此竖条的高度与它执行每个显示列表所花的时间的总和成正比—显示列表越多，红色条就越高。</item>
+        <item>表示将位图信息上传到 GPU 所花的时间。 大区段表示应用花费大量的时间加载大量图形。</item>
+        <item>表示用于创建和更新视图显示列表的时间。 如果竖条的此部分很高，则表明这里可能有许多自定义视图绘制，或 onDraw 函数执行的工作很多。</item>
+        <item>表示在视图层次结构中的 onLayout 和 onMeasure 回调上所花的时间。 大区段表示此视图层次结构正在花很长时间进行处理。</item>
+        <item>表示评估运行该帧的所有动画程序所花的时间。 如果此区段很大，则表示您的应用可能在使用性能欠佳的自定义动画程序，或因更新属性而导致一些意料之外的工作。</item>
+        <item>表示应用执行输入 Event 回调中的代码所花的时间。 如果此区段很大，则表示此应用花太多时间处理用户输入。 考虑将此处理任务分流到另一个线程。</item>
+        <item>表示应用执行两个连续帧之间的操作所花的时间。 它可能表示界面线程中进行的处理太多，而这些处理任务本可以分流到其他线程。</item>
+    </array>
+
+    <integer-array name="ids">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+    </integer-array>
+</resources>
