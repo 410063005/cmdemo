@@ -9,8 +9,10 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/100threads" />
+            <option value="$PROJECT_DIR$/animationdemo" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/gpuprofilerdemo" />
+            <option value="$PROJECT_DIR$/x5demo" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

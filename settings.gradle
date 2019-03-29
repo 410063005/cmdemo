@@ -1,1 +1,1 @@
-include ':app', ':gpuprofilerdemo', ':100threads', ':x5demo'
+include ':app', ':gpuprofilerdemo', ':100threads', ':x5demo', ':animationdemo'
