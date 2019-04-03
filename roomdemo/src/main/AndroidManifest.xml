@@ -14,7 +14,7 @@
             android:name=".HomeActivity"
             android:label="@string/title_activity_home"></activity>
         <activity
-            android:name=".CollectActivity"
+            android:name=".ui.CollectActivity"
             android:windowSoftInputMode="adjustResize"
             android:label="@string/title_activity_collect"
             android:theme="@style/AppTheme.NoActionBar" />

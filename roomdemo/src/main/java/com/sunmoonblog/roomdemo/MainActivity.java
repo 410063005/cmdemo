@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.sunmoonblog.roomdemo.ui.CollectActivity;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private EditText mEtName;
@@ -37,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onClick(View v) {
 //                PersonListActivity.start(MainActivity.this);
-                CollectActivity.start(MainActivity.this);
+                CollectActivity.Companion.start(MainActivity.this);
 //                HomeActivity.start(MainActivity.this);
             }
         });
