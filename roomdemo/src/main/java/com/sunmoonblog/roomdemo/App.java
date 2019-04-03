@@ -10,7 +10,8 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        mAppDatabase = Room.databaseBuilder(this, AppDatabase.class, "cm-first-db").build();
+        mAppDatabase = Room.databaseBuilder(this, AppDatabase.class, "cm-first-db")
+                .fallbackToDestructiveMigration().build();
     }
 
     public AppDatabase getAppDatabase() {

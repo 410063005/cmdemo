@@ -18,6 +18,10 @@
             android:windowSoftInputMode="adjustResize"
             android:label="@string/title_activity_collect"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".EditTaskActivity"
+            android:windowSoftInputMode="adjustResize"
+            android:label="编辑"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

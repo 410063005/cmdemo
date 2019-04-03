@@ -4,6 +4,8 @@ import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
+import java.util.Date;
+
 @Entity
 public class Person {
 
@@ -16,9 +18,13 @@ public class Person {
     @ColumnInfo(name = "user_age")
     private int age;
 
+    @ColumnInfo(name = "user_date")
+    private long date;
+
     public Person(String name, int age) {
         this.name = name;
         this.age = age;
+        this.date = new Date().getTime();
     }
 
     public int getId() {
@@ -43,5 +49,13 @@ public class Person {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public long getDate() {
+        return date;
+    }
+
+    public void setDate(long date) {
+        this.date = date;
     }
 }

@@ -4,6 +4,7 @@ import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
 
+import java.util.Date;
 import java.util.List;
 
 public class PersonViewModel extends ViewModel {
@@ -28,8 +29,12 @@ public class PersonViewModel extends ViewModel {
         }).start();
     }
 
-    public LiveData<List<Person>> getAllPerson(List<Integer> ages) {
-        return mPersonDao.getAll(ages);
+    public LiveData<List<Person>> getAllPerson2() {
+        return mPersonDao.getAll2();
+    }
+
+    public LiveData<List<Person>> getAllPerson(Date from, Date to) {
+        return mPersonDao.getAllPerson(from, to);
     }
 
     public void setPersonDao(PersonDao dao) {

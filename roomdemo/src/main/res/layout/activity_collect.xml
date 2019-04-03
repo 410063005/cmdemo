@@ -24,6 +24,7 @@
     <!--<include layout="@layout/content_collect" />-->
 
     <android.support.constraint.ConstraintLayout
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -39,6 +40,14 @@
             app:layout_constraintStart_toStartOf="parent"
             app:menu="@menu/navigation" />
 
+        <com.sunmoonblog.roomdemo.MyViewPager
+            android:id="@+id/view_pager"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/navigation"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </android.support.constraint.ConstraintLayout>
 
@@ -60,14 +69,23 @@
         android:background="?android:attr/windowBackground"
         android:gravity="center"
         android:minHeight="56dp"
+        android:orientation="horizontal"
         android:visibility="invisible">
 
         <EditText
             android:id="@+id/editText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:hint="input something"
             android:padding="8dp" />
+
+        <Button
+            android:id="@+id/add"
+            style="@style/Widget.AppCompat.Button.Small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:drawable/ic_menu_send" />
     </LinearLayout>
 
 </android.support.design.widget.CoordinatorLayout>

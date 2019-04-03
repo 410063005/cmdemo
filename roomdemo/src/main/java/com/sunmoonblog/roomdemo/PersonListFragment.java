@@ -15,7 +15,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class PersonListFragment extends Fragment {
@@ -23,7 +22,7 @@ public class PersonListFragment extends Fragment {
     private static final String TAG = "PersonListFragment";
 
     private PersonViewModel mPersonViewModel;
-    private PersonListAdapter mPersonListAdapter;
+    private PersonListAdapter2 mPersonListAdapter;
 
     @Nullable
     @Override
@@ -34,22 +33,17 @@ public class PersonListFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        RecyclerView rv = view.findViewById(R.id.rv);
+        final RecyclerView rv = view.findViewById(R.id.rv);
 
-        ItemTouchHelper helper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.START) {
-            @Override
-            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder viewHolder1) {
-                return false;
-            }
-
-            @Override
-            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
-                Log.i(TAG, "onSwiped() called with: viewHolder = [" + viewHolder + "], i = [" + i + "]");
-                if (i == ItemTouchHelper.START) {
-                    mPersonViewModel.delete(((PersonListAdapter.PersonViewHolder) viewHolder).getPerson());
-                }
-            }
-        });
+        ItemTouchHelper helper = new ItemTouchHelper(
+                new SwipeToDeleteCallback(requireContext()) {
+                    @Override
+                    public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
+                       if (i == ItemTouchHelper.LEFT) {
+                           mPersonViewModel.delete( ((PersonListAdapter.PersonViewHolder) viewHolder).getPerson());
+                       }
+                    }
+                });
         helper.attachToRecyclerView(rv);
         rv.setAdapter(mPersonListAdapter);
         rv.setLayoutManager(new LinearLayoutManager(requireContext()));
@@ -61,6 +55,21 @@ public class PersonListFragment extends Fragment {
                 mPersonViewModel.getAllPerson();
             }
         });
+
+        mPersonListAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
+            @Override
+            public void onItemRangeInserted(int positionStart, int itemCount) {
+                super.onItemRangeInserted(positionStart, itemCount);
+                if (positionStart == 0) {
+                    rv.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            rv.smoothScrollToPosition(0);
+                        }
+                    });
+                }
+            }
+        });
     }
 
     @Override
@@ -69,22 +78,32 @@ public class PersonListFragment extends Fragment {
         PersonDao dao = ((App) requireContext().getApplicationContext()).getAppDatabase().getPersonDao();
         mPersonViewModel = ViewModelProviders.of(this).get(PersonViewModel.class);
         mPersonViewModel.setPersonDao(dao);
-        mPersonListAdapter = new PersonListAdapter(requireContext());
+        mPersonListAdapter = new PersonListAdapter2(requireContext());
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        //        mPersonViewModel.getLiveDataAllPerson().observe(this, new Observer<List<Person>>() {
-        mPersonViewModel.getAllPerson(Arrays.asList(15, 16)).observe(this, new Observer<List<Person>>() {
+        observe();
+    }
+
+    protected void observe() {
+        mPersonViewModel.getAllPerson2().observe(this, new Observer<List<Person>>() {
             @Override
             public void onChanged(@Nullable List<Person> people) {
                 if (people != null) {
                     Log.i(TAG, "onChanged: " + people.size());
-                    mPersonListAdapter.setAll(people);
-                    mPersonListAdapter.notifyDataSetChanged();
+                    mPersonListAdapter.submitList(people);
                 }
             }
         });
+    }
+
+    public PersonViewModel getPersonViewModel() {
+        return mPersonViewModel;
+    }
+
+    public PersonListAdapter2 getPersonListAdapter() {
+        return mPersonListAdapter;
     }
 }
