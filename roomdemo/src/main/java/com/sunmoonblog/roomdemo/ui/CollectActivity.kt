@@ -1,5 +1,6 @@
 package com.sunmoonblog.roomdemo.ui
 
+import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -8,6 +9,7 @@ import android.support.v7.widget.Toolbar
 import android.util.Log
 import android.view.View
 import com.sunmoonblog.roomdemo.*
+import com.sunmoonblog.roomdemo.viewmodel.TaskViewModel
 import kotlinx.android.synthetic.main.activity_collect.*
 
 class CollectActivity : AppCompatActivity(), KeyboardMonitor {
@@ -25,11 +27,15 @@ class CollectActivity : AppCompatActivity(), KeyboardMonitor {
         }
     }
 
+    private lateinit var taskViewModel: TaskViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_collect)
         val toolbar: Toolbar? = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
+
+        taskViewModel = ViewModelProviders.of(this).get(TaskViewModel::class.java)
 
         listenKeyboardVisibility(findViewById(R.id.content))
 
@@ -46,7 +52,12 @@ class CollectActivity : AppCompatActivity(), KeyboardMonitor {
             if (text.isEmpty()) {
                 toast("内容为空")
             } else {
-                addTask(text)
+                val person = Person(text, 20)
+                taskViewModel.addTask(person) {
+                    runOnUiThread {
+                        toast(if (it) "添加数据成功" else "添加数据失败")
+                    }
+                }
             }
             editText.setText("")
         }
@@ -70,14 +81,6 @@ class CollectActivity : AppCompatActivity(), KeyboardMonitor {
             }
             return@setOnNavigationItemSelectedListener false
         }
-    }
-
-    private fun addTask(text: String) {
-        val dao = (application as App).appDatabase.personDao
-        Thread(Runnable {
-            dao.insertAll(Person(text, 20))
-            runOnUiThread { toast("添加数据成功") }
-        }).start()
     }
 
     override fun onKeyboardOpen() {
