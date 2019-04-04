@@ -15,13 +15,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.sunmoonblog.roomdemo.viewmodel.TaskViewModel;
+
 import java.util.List;
 
 public class PersonListFragment extends Fragment {
 
     private static final String TAG = "PersonListFragment";
 
-    private PersonViewModel mPersonViewModel;
+    private TaskViewModel mTaskViewModel;
     private PersonListAdapter2 mPersonListAdapter;
 
     @Nullable
@@ -40,7 +42,7 @@ public class PersonListFragment extends Fragment {
                     @Override
                     public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
                        if (i == ItemTouchHelper.LEFT) {
-                           mPersonViewModel.delete( ((PersonListAdapter.PersonViewHolder) viewHolder).getPerson());
+                           mTaskViewModel.delete( ((PersonListAdapter.PersonViewHolder) viewHolder).getPerson());
                        }
                     }
                 });
@@ -52,7 +54,7 @@ public class PersonListFragment extends Fragment {
         view.findViewById(R.id.load).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mPersonViewModel.getAllPerson();
+                mTaskViewModel.getAllPerson();
             }
         });
 
@@ -75,9 +77,7 @@ public class PersonListFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        PersonDao dao = ((App) requireContext().getApplicationContext()).getAppDatabase().getPersonDao();
-        mPersonViewModel = ViewModelProviders.of(this).get(PersonViewModel.class);
-        mPersonViewModel.setPersonDao(dao);
+        mTaskViewModel = ViewModelProviders.of(this).get(TaskViewModel.class);
         mPersonListAdapter = new PersonListAdapter2(requireContext());
     }
 
@@ -88,7 +88,7 @@ public class PersonListFragment extends Fragment {
     }
 
     protected void observe() {
-        mPersonViewModel.getAllPerson2().observe(this, new Observer<List<Person>>() {
+        mTaskViewModel.getAllPerson2().observe(this, new Observer<List<Person>>() {
             @Override
             public void onChanged(@Nullable List<Person> people) {
                 if (people != null) {
@@ -99,8 +99,8 @@ public class PersonListFragment extends Fragment {
         });
     }
 
-    public PersonViewModel getPersonViewModel() {
-        return mPersonViewModel;
+    public TaskViewModel getPersonViewModel() {
+        return mTaskViewModel;
     }
 
     public PersonListAdapter2 getPersonListAdapter() {

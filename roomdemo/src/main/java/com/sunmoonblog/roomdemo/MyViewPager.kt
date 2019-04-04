@@ -7,7 +7,7 @@ import android.view.MotionEvent
 
 class MyViewPager(context: Context, attrs: AttributeSet? = null) : ViewPager(context, attrs) {
 
-    var swipeEnabled = false
+    private var swipeEnabled = false
 
     override fun onInterceptTouchEvent(ev: MotionEvent?): Boolean {
         if (swipeEnabled) {
