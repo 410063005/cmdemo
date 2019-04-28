@@ -17,6 +17,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".layout.ClAnimationActivity" android:label="ConstraintLayout动画"/>
+        <activity android:name=".layout.ClAnimationActivity2" />
     </application>
 
 </manifest>

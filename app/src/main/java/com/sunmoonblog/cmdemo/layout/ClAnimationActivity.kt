@@ -55,7 +55,6 @@ class ClAnimationActivity : AppCompatActivity() {
         resetConstraintSet.applyTo(constraintLayout)
     }
 
-
     companion object {
         fun launchActivity(context: Context) {
             val intent = Intent(context, ClAnimationActivity::class.java)
