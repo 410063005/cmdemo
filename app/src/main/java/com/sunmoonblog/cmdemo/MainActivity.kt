@@ -5,12 +5,17 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.sunmoonblog.cmdemo.layout.ClAnimationActivity
 import com.sunmoonblog.cmdemo.layout.ClAnimationActivity2
+import com.sunmoonblog.cmdemo.layout.ClAnimationSimpleActivity
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+    }
+
+    fun clAnimationSimple(view: View) {
+        ClAnimationSimpleActivity.launchActivity(this)
     }
 
     fun clAnimation(view : View) {
