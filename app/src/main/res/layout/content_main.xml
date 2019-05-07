@@ -78,9 +78,22 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:text="数据绑定例一"
+        android:text="数据绑定之 hello world"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button5"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <Button
+        android:onClick="clDataBindingViewModel"
+        android:id="@+id/button7"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="数据绑定与 ViewModel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button6"
         tools:layout_editor_absoluteY="16dp" />
 </android.support.constraint.ConstraintLayout>
