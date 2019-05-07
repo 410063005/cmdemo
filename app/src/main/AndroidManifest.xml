@@ -22,6 +22,7 @@
         <activity android:name=".layout.ClAnimationSimpleActivity" />
         <activity android:name=".layout.ClAnimationParallaxActivity" />
         <activity android:name=".lifecycle.ForegroundMonitorActivity" />
+        <activity android:name=".databinding.DataBindingDemoActivity" />
     </application>
 
 </manifest>
