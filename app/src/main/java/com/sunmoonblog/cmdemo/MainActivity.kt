@@ -11,6 +11,7 @@ import com.sunmoonblog.cmdemo.layout.ClAnimationActivity
 import com.sunmoonblog.cmdemo.layout.ClAnimationActivity2
 import com.sunmoonblog.cmdemo.layout.ClAnimationParallaxActivity
 import com.sunmoonblog.cmdemo.layout.ClAnimationSimpleActivity
+import com.sunmoonblog.cmdemo.lifecycle.DialogWillCrashActivity
 import com.sunmoonblog.cmdemo.lifecycle.ForegroundMonitorActivity
 
 class MainActivity : AppCompatActivity() {
@@ -18,6 +19,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+    }
+
+    fun clLiveDataDialog(view: View) {
+        DialogWillCrashActivity.start(this)
     }
 
     fun clBlur(view: View) {

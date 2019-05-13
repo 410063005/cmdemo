@@ -26,6 +26,7 @@
         <activity android:name=".databinding.DataBindingDemo2Activity" />
         <activity android:name=".databinding.DataBindingAdapterActivity" />
         <activity android:name=".bitmap.BlurUIActivity" />
+        <activity android:name=".lifecycle.DialogWillCrashActivity" />
     </application>
 
 </manifest>
