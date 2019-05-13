@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager
 import com.sunmoonblog.cmdemo.R
 import kotlinx.android.synthetic.main.activity_blur_ui.*
 
+
 class BlurUIActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="BlurryView">
+        <attr name="blurry_radius" format="dimension"/>
+        <attr name="blurry_color"  format="color" />
+        <attr name="blurry_factor" format="float"/>
+    </declare-styleable>
+</resources>
