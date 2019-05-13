@@ -23,7 +23,7 @@ import android.view.ViewTreeObserver;
 import com.sunmoonblog.cmdemo.R;
 
 // https://github.com/yishengma/RealTimeBlurryView
-public class BlurryView extends View {
+public abstract class BlurryView extends View {
     private static final String TAG = "BlurryView";
     private static final float DEFAULT_SCALE_FACTOR = 4;
     private static final int DEFAULT_OVERLAY_COLOR = 0x99000000; //api 17 及以上
@@ -36,15 +36,16 @@ public class BlurryView extends View {
     private int mOverlayColor; //覆盖颜色
     private float mBlurryRadius; //模糊半径（模糊程度）
 
-    private Bitmap mSourceBitmap; //源 bitmap
-    private Bitmap mBlurredBitmap; //模糊后 的 bitmap
+    protected Bitmap mSourceBitmap; //源 bitmap
+    protected Bitmap mBlurredBitmap; //模糊后 的 bitmap
 
-    private RenderScript mRenderScript; //高性能计算脚本类
-    private ScriptIntrinsicBlur mScriptIntrinsicBlur;//高斯模糊计算的脚本类
+    protected RenderScript mRenderScript; //高性能计算脚本类
+
+    protected ScriptIntrinsicBlur mScriptIntrinsicBlur;//高斯模糊计算的脚本类
 
     //内核计算分配的内存
-    private Allocation mBlurInputAllocation; //输入分配
-    private Allocation mBlurOutputAllocation; //输出分配
+    protected Allocation mBlurInputAllocation; //输入分配
+    protected Allocation mBlurOutputAllocation; //输出分配
 
     private static int RENDERING_COUNT;//限制只有一个 View 模糊，不能叠加
     private boolean mIsRendering; //是否正在渲染
@@ -120,7 +121,7 @@ public class BlurryView extends View {
                 mBlurringCanvas.restoreToCount(rc);//恢复状态
                 mIsRendering = false;
                 //对 Bitmap 进行模糊处理
-                blur(mSourceBitmap, mBlurredBitmap);
+                process();
                 //重新绘制
                 //if (redrawBitmap) {
                 //    invalidate();
@@ -132,6 +133,8 @@ public class BlurryView extends View {
 
         }
     };
+
+    protected abstract void process();
 
     private View getActivityDecorView() {
         Context context = getContext();
@@ -231,14 +234,7 @@ public class BlurryView extends View {
         return true;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
-    private void blur(Bitmap sourceBitmap, Bitmap blurredBitmap) {
-        mBlurInputAllocation.copyFrom(sourceBitmap); //把  源 bitmap 拷贝到 内核内存中
-        mScriptIntrinsicBlur.setInput(mBlurInputAllocation); //设置高斯计算的输入内存
-        mScriptIntrinsicBlur.forEach(mBlurOutputAllocation); //进行计算，并将计算结果输出到输出内存中
-        mBlurOutputAllocation.copyTo(blurredBitmap); //将输出内存的的 bitmap 拷贝给 blurredBitmap 即模糊后的 bitMap
 
-    }
 
     private void drawBlurredBitmap(Canvas canvas, Bitmap blurredBitmap, int overlayColor) {
         //截取需要显示的模糊区域的大小
