@@ -2,7 +2,6 @@ package com.sunmoonblog.cmdemo.lifecycle
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -15,13 +14,11 @@ class DialogWillCrashActivity : AppCompatActivity() {
 
     private val liveData = MutableLiveData<Int>()
 
-    private lateinit var viewModel: ShowDialogViewModel
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dialog_will_crash)
 
-        // 这里会有 crash
+        // Home 键将 DialogWillCrashActivity 切到后台时, 这里会有 crash
         button.setOnClickListener {
 
             button.postDelayed({
@@ -31,7 +28,8 @@ class DialogWillCrashActivity : AppCompatActivity() {
 
         }
 
-        // 使用 LiveData 避免 crash
+        // Home 键将 DialogWillCrashActivity 切到后台时, 可以使用 LiveData 避免 crash
+        // 一个额外的好处是, DialogWillCrashActivity 重新切换到前台时, 还能正常弹框
         subscribeUi()
         button2.setOnClickListener {
 
@@ -40,16 +38,6 @@ class DialogWillCrashActivity : AppCompatActivity() {
                 liveData.value = 1
             }, 3000)
 
-        }
-
-        // 使用 ViewModel
-        viewModel = ViewModelProviders.of(this, ShowDialogViewModelFactory).get(ShowDialogViewModel::class.java)
-        subscribeUiForViewModel()
-        button3.setOnClickListener {
-            button3.postDelayed({
-                Toast.makeText(this@DialogWillCrashActivity, "button3 message", Toast.LENGTH_SHORT).show()
-                viewModel.showDf()
-            }, 3000)
         }
 
     }
@@ -63,15 +51,6 @@ class DialogWillCrashActivity : AppCompatActivity() {
         liveData.observe(this, Observer {
             if (it != null) {
                 showMyDialogFragment()
-            }
-        })
-    }
-
-    private fun subscribeUiForViewModel() {
-        viewModel.getLiveData().observe(this, Observer {
-            if (it != null) {
-                showMyDialogFragment()
-                viewModel.haveShowed()
             }
         })
     }
