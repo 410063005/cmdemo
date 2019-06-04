@@ -1,6 +1,14 @@
 # cmdemo
 一些杂七杂八的例子
 
+# fake_dlopen 示例
+
++ 了解 [android-7.0-changes](https://developer.android.com/about/versions/nougat/android-7.0-changes#ndk)
++ 了解 [Improving Stability with Private C/C++ Symbol Restrictions in Android N](https://android-developers.googleblog.com/2016/06/improving-stability-with-private-cc.html)
++ 使用 [avs333/Nougat_dlfunctions](https://github.com/avs333/Nougat_dlfunctions)
+
+示例见 `LoadSoActivity.kt`
+
 # Bitmap 解码性能测试
 
 测试代码见 [BitmapDecodePerfActivity](https://github.com/410063005/cmdemo/blob/master/app/src/main/java/com/sunmoonblog/cmdemo/bitmap/BitmapDecodePerfActivity.kt)。

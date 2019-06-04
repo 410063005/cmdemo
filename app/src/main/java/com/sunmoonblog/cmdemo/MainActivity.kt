@@ -8,6 +8,7 @@ import com.sunmoonblog.cmdemo.bitmap.BlurUIActivity
 import com.sunmoonblog.cmdemo.databinding.DataBindingAdapterActivity
 import com.sunmoonblog.cmdemo.databinding.DataBindingDemo2Activity
 import com.sunmoonblog.cmdemo.databinding.DataBindingDemoActivity
+import com.sunmoonblog.cmdemo.dlsym.LoadSoActivity
 import com.sunmoonblog.cmdemo.layout.ClAnimationActivity
 import com.sunmoonblog.cmdemo.layout.ClAnimationActivity2
 import com.sunmoonblog.cmdemo.layout.ClAnimationParallaxActivity
@@ -20,6 +21,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+    }
+
+    fun clDlopen(view: View) {
+        LoadSoActivity.start(this)
     }
 
     fun clBitmapDecodePerf(view: View) {

@@ -28,6 +28,7 @@
         <activity android:name=".bitmap.BlurUIActivity" />
         <activity android:name=".lifecycle.DialogWillCrashActivity" />
         <activity android:name=".bitmap.BitmapDecodePerfActivity" />
+        <activity android:name=".dlsym.LoadSoActivity" />
     </application>
 
 </manifest>
