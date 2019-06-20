@@ -29,6 +29,7 @@
         <activity android:name=".lifecycle.DialogWillCrashActivity" />
         <activity android:name=".bitmap.BitmapDecodePerfActivity" />
         <activity android:name=".dlsym.LoadSoActivity" />
+        <activity android:name=".layout.CmViewActivity" />
     </application>
 
 </manifest>

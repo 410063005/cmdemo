@@ -9,10 +9,7 @@ import com.sunmoonblog.cmdemo.databinding.DataBindingAdapterActivity
 import com.sunmoonblog.cmdemo.databinding.DataBindingDemo2Activity
 import com.sunmoonblog.cmdemo.databinding.DataBindingDemoActivity
 import com.sunmoonblog.cmdemo.dlsym.LoadSoActivity
-import com.sunmoonblog.cmdemo.layout.ClAnimationActivity
-import com.sunmoonblog.cmdemo.layout.ClAnimationActivity2
-import com.sunmoonblog.cmdemo.layout.ClAnimationParallaxActivity
-import com.sunmoonblog.cmdemo.layout.ClAnimationSimpleActivity
+import com.sunmoonblog.cmdemo.layout.*
 import com.sunmoonblog.cmdemo.lifecycle.DialogWillCrashActivity
 import com.sunmoonblog.cmdemo.lifecycle.ForegroundMonitorActivity
 
@@ -21,6 +18,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+    }
+
+    fun clTouchEvent(view : View) {
+        CmViewActivity.start(this)
     }
 
     fun clDlopen(view: View) {

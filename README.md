@@ -1,6 +1,16 @@
 # cmdemo
 一些杂七杂八的例子
 
+# RecyclerView 嵌套滚动
+
+![](https://mp.weixin.qq.com/s?__biz=MzAxMTI4MTkwNQ==&mid=2650828127&idx=1&sn=a41f70febd47b9813fd124073028a5d1&chksm=80b7b9c1b7c030d707dbe8393bedec01e074c672014139715a36e273dcf232f71088eab4475c&mpshare=1&scene=1&srcid=0617OUaeDN16bzvzNGilbQfi&rd2werd=1#wechat_redirect)
+
+# onTouchEvent
+
+见 `CmView` 和 `CmViewGroup`。
+
+要点：`ViewGroup.onInterceptTouchEvent()` 返回 `true` 之后对 touch event 事件处理流程的影响。
+
 # fake_dlopen 示例
 
 + 了解 [android-7.0-changes](https://developer.android.com/about/versions/nougat/android-7.0-changes#ndk)
