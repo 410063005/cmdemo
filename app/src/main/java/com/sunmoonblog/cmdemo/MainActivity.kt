@@ -20,6 +20,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
     }
 
+    fun clTouchEventDelegate(view: View) {
+        TouchDelegateActivity.start(this)
+    }
+
     fun clTouchEvent(view : View) {
         CmViewActivity.start(this)
     }

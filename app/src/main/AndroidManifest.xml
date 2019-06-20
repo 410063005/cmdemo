@@ -30,6 +30,7 @@
         <activity android:name=".bitmap.BitmapDecodePerfActivity" />
         <activity android:name=".dlsym.LoadSoActivity" />
         <activity android:name=".layout.CmViewActivity" />
+        <activity android:name=".layout.TouchDelegateActivity" />
     </application>
 
 </manifest>
