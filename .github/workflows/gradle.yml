@@ -29,3 +29,9 @@ jobs:
       run: chmod +x gradlew
     - name: Build with Gradle
       run: ./gradlew :100threads:assembleDebug
+
+    - name: Upload APK
+      uses: actions/upload-artifact@v1
+      with:
+        name: app
+        path: 100threads/build/outputs/apk/debug/100threads-debug.apk
